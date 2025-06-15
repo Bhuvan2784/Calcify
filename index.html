@@ -48,7 +48,7 @@
                     <button>0</button>
                     <button>*</button>
                     <button>/</button>
-                    <button>**</button>
+                    <button>^</button>
                 </div>
                 <div>
                     <button>.</button>
@@ -59,6 +59,21 @@
             </div>     
         </div>
     </div>
+    </div>
+    <div class="instructions " style="padding: 25px;">
+        <div class="inst2" style="display: flex; align-items: center; justify-content: center;">
+            <span>💡</span><h2>Keyboard Shortcuts</h2>
+        </div>
+        <div>
+            <p><span>⏎</span> <b>Enter</b> → Show result</p>
+            <p><span>⌫</span> <b>Backspace</b> → Delete last character</p>
+            <p><span>🧹</span> <b>Esc</b> → Clear all</p>
+            <p><b>S</b> → Insert <b>√</b> (square root)</p>
+            <p><span>🔢</span> <b>Shift + 9</b> → Insert <b>(</b> (open bracket)</p>
+            <p><span>🔢</span> <b>Shift + 0</b> → Insert <b>)</b> (close bracket)</p>
+            <p><span style="font-weight: 800; color: crimson;">x<sup style="color: crimson;">2</sup></span> <b>Shift + 6</b> → Insert <b>^</b> (power)</p>
+        </div>
+    </div>
     </main>
     <script>  
         const ans = document.querySelector(".ans");
@@ -67,6 +82,11 @@
         
         let expression = '';
         
+        function autoClosingBrackets(exp){
+            let open = (exp.match(/\(/g) || []).length;
+            let close = (exp.match(/\)/g) || []).length;
+            return exp + ')'.repeat(open-close);
+        }
         buttonall.forEach(button =>{
             button.addEventListener("click",function(){
                 this.style.boxShadow = "0px 0px 10px white";
@@ -86,7 +106,13 @@
                     expression = '';    //To clear string
                 }
                 else if(action === 'result'){
-                    expression = math.evaluate(expression).toString();//eval() returns a int and then converted to string
+                    try{
+                        expression = autoClosingBrackets(expression);
+                        expression = math.evaluate(expression).toString();//eval() returns a int and then converted to string
+                    }
+                    catch{
+                        expression = 'error';
+                    }
                 }
                 else if(action === 'backspace'){
                     expression = expression.slice(0,-1); //slice(str,end) -1 is not included
@@ -99,7 +125,7 @@
         });
             document.addEventListener("keydown",function(e){
                 let key = e.key;
-                let allow = '1234567890/.*%()^+-';
+                let allow = '1234567890s/.*%()^+-';
 
                 if(allow.includes(key) || ['Backspace','Escape','Enter'].includes(key)){
                 if(key == 'Escape'){
@@ -107,6 +133,7 @@
                 }
                 else if(key === 'Enter'){
                     try{
+                        expression = autoClosingBrackets(expression);
                         expression = math.evaluate(expression).toString();
                     }
                     catch{
@@ -115,6 +142,9 @@
                 }
                 else if(key === 'Backspace'){
                     expression = expression.slice(0,-1); 
+                }
+                else if(key === 's'){
+                    expression += 'sqrt(';
                 }
                 else{
                     expression += key; 

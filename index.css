@@ -7,14 +7,17 @@
 html, body {
     height: 100%;
     width: 100%;
+    overflow: hidden;
 }
 main{
+    position: relative;
     height: 100%;
     width: 100%;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     background-color: cornflowerblue;
+    z-index: 0;
 }
 .ans{
     padding: 10px;
@@ -111,4 +114,65 @@ h1{
 }
 #result,#cancel,#dot{
     height: 100%;
+}
+.instructions {
+  position: relative;
+  font-size: 0.8rem;
+  background-color: #f9f9f9;
+  padding: 8px 12px;
+  margin-top: 10px;
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  line-height: 1.5;
+  color: #333;
+}
+
+.instructions p {
+  margin: 5px 0;
+  display: flex;
+  font-size: 1.3rem;
+  align-items: center;
+  gap: 6px;
+}
+
+.instructions span {
+  font-size: 1.2rem;
+}
+@property --val{
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+.instructions::before{
+    content: '';
+    position: absolute;
+    width: 106%;
+    height: 106%;
+    left: -3%;
+    top: -3%;
+    border-radius: 10px;
+    background: conic-gradient(from var(--val),transparent 0% 20%,crimson 20% 40%,transparent 40% 70%,purple 70% 90% ,transparent 90% 100%);
+    filter: blur(0.5rem);
+    animation: roeffect 7.5s linear infinite;
+    z-index: -1;
+
+}
+.inst2 h2{
+    text-align: center; 
+    margin: 0px 10px; 
+    font-size: 1.4rem; 
+    background: linear-gradient(crimson,purple,blue);
+    color: transparent;
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+@keyframes roeffect {
+    0%{
+        --val: 0deg;
+    }
+    100%{
+        --val: 360deg;
+    } 
 }
