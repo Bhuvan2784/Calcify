@@ -1,0 +1,114 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+}
+main{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: cornflowerblue;
+}
+.ans{
+    padding: 10px;
+    height: 65px;
+    width: 70%;
+    margin-left: 15px;
+    border-radius: 5px;
+    border: none;
+    font-size: 35px;
+    color: rgb(101, 190, 162);
+    background-color: rgb(38, 51, 51);
+}
+.container{
+    padding-top: 15px;
+    height: calc(100% - 95px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+}
+.num{
+    padding-top: 20px;
+    height: calc(100% - 25px);
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+.num>div{
+    display: flex;
+    gap: 15px;
+    
+}
+.num button{
+    margin-left: 2px;
+    height: 60px;
+    width: 60px;
+}
+.enter{
+    height: 45px;
+    width: 100%;
+    border-radius: 10px;
+    gap: 5px;
+    display: flex;
+    align-items: center;
+}
+.enter>button{
+    height: 100%;
+    width: 100%;
+}
+button{
+    font-size: 1rem;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px black;
+    border: none;
+    border-radius: 15px;
+}
+.design{
+    border: 1px solid black;
+    border-radius: 7px;
+    display: flex;
+    height: 25px;
+    width: 80%;
+    box-sizing: content-box;
+    background-color: rgb(82, 70, 70);
+}
+.line{
+    height: 1px;
+    width: 29px;
+    transform: rotate(90deg) translateX(12.5px);
+    background-color: black;
+}
+h1{
+    color: black;
+    letter-spacing: 2px;
+    font-size: 1.5rem;
+}
+.calc{
+    padding: 20px;
+    height: 500px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    border-radius: 15px;
+    background: cadetblue;
+    border: 1px solid black;
+    box-shadow: 0px 0px 10px lavender;
+}
+#one{
+    background-color: white;
+}
+#result,#cancel,#dot{
+    height: 100%;
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/mathjs@11/lib/browser/math.min.js"></script>
+    <link rel="stylesheet" href="index.css">
+    <title>Calculator</title>
+</head>
+<body>
+    <main>
+        <div class="calc">
+            <div style="display: flex; gap: 10px;">
+                <input class="ans" readonly></input>
+                <div>
+                    <div class="design">
+                        <div class="line"></div>
+                        <div class="line"></div>
+                        <div class="line"></div>
+                    </div>
+                   <div style="padding-left: 2px;">
+                    <h1>Calc</h1>
+                   <h6 style=" color: black; opacity: 0.8; margin-left: 10px;">Edition-B</h6>
+                   </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="num">
+                    <div>
+                    <button>1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button data-action="clear">C</button>
+                </div>
+                <div>
+                    <button>4</button>
+                    <button>5</button>
+                    <button>6</button>
+                    <button>-</button>
+                </div>
+                <div>
+                    <button>7</button>
+                    <button>8</button>
+                    <button>9</button>  
+                    <button>+</button>
+                </div>
+                <div>
+                    <button>0</button>
+                    <button>*</button>
+                    <button>/</button>
+                    <button>**</button>
+                </div>
+                <div>
+                    <button>.</button>
+                    <button data-action = "backspace">←</button>
+                    <button>%</button>
+                    <button data-action="result">=</button>
+                </div>
+            </div>     
+        </div>
+    </div>
+    </main>
+    <script>  
+        const ans = document.querySelector(".ans");
+        const result = document.querySelector("#result");
+        const buttonall = document.querySelectorAll("button");
+        
+        let expression = '';
+        
+        buttonall.forEach(button =>{
+            button.addEventListener("click",function(){
+                this.style.boxShadow = "0px 0px 10px white";
+                this.style.fontSize = "1.3rem";
+                this.blur();
+
+                setTimeout(()=>{
+                    this.style.backgroundColor = "white";
+                    this.style.boxShadow = "0px 0px 10px black";
+                    this.style.fontSize = "1rem";
+                    this.style.color = "black";
+                },200);
+
+                const action = this.dataset.action;
+                
+                if(action === 'clear'){
+                    expression = '';    //To clear string
+                }
+                else if(action === 'result'){
+                    expression = math.evaluate(expression).toString();//eval() returns a int and then converted to string
+                }
+                else if(action === 'backspace'){
+                    expression = expression.slice(0,-1); //slice(str,end) -1 is not included
+                }
+                else{
+                    expression += this.textContent; //update expression
+                }
+                ans.value = expression;
+            });
+        });
+            document.addEventListener("keydown",function(e){
+                let key = e.key;
+                let allow = '1234567890/.*%()^+-';
+
+                if(allow.includes(key) || ['Backspace','Escape','Enter'].includes(key)){
+                if(key == 'Escape'){
+                    expression = '';    //To clear string
+                }
+                else if(key === 'Enter'){
+                    try{
+                        expression = math.evaluate(expression).toString();
+                    }
+                    catch{
+                        expression = 'error';
+                    }
+                }
+                else if(key === 'Backspace'){
+                    expression = expression.slice(0,-1); 
+                }
+                else{
+                    expression += key; 
+                }
+                ans.value = expression;
+                }
+            });
+    </script>
+</body>
+</html>
