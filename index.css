@@ -105,7 +105,7 @@ h1{
     flex-direction: column;
     gap: 15px;
     border-radius: 15px;
-    background: cadetblue;
+    background: rgb(189, 240, 242);
     border: 1px solid black;
     box-shadow: 0px 0px 10px lavender;
 }
@@ -175,4 +175,71 @@ h1{
     100%{
         --val: 360deg;
     } 
+}
+
+@media (max-width: 768px) {
+  main {
+    flex-direction: column;
+    gap: 40px;
+    justify-content: flex-start;
+    padding: 50px;
+    overflow-y: auto;
+  }
+
+  .calc {
+    width: 90%;
+    height: auto;
+    padding: 15px;
+  }
+
+  .ans {
+    width: 100%;
+    font-size: 1.8rem;
+  }
+
+  .num {
+    gap: 10px;
+  }
+
+  .num button {
+    height: 55px;
+    width: 55px;
+    font-size: 1.1rem;
+  }
+
+  .instructions {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    width: 95%;
+  }
+
+  .instructions p {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .calc {
+    width: 95%;
+    padding: 10px;
+  }
+
+  .ans {
+    font-size: 1.5rem;
+    padding: 8px;
+  }
+
+  .num button {
+    height: 50px;
+    width: 50px;
+    font-size: 1rem;
+  }
+
+  .inst2 h2 {
+    font-size: 1.2rem;
+  }
+
+  .instructions p {
+    font-size: 0.8rem;
+  }
 }
